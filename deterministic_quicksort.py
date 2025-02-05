@@ -1,0 +1,34 @@
+import random
+import time
+
+def partition(arr, low, high):
+    pivot = arr[high]  # Selecting the last element as pivot
+    i = low - 1  # Pointer for the smaller element
+    
+    for j in range(low, high):
+        if arr[j] < pivot: # check if teh value is smaller than the pivot
+            i += 1  # Move the pointer forward
+            arr[i], arr[j] = arr[j], arr[i]  # Swap elements
+    
+    # Place the pivot in the correct position
+    arr[i + 1], arr[high] = arr[high], arr[i + 1]
+    return i + 1  # Return the pivot index
+
+
+def quicksort(arr):
+    if len(arr) <= 1:
+        return arr  # we just return the array since we can consider it sorted
+    
+    stack = [(0, len(arr) - 1)]  # Stack to store indexes
+    
+    while stack:
+        low, high = stack.pop()  # Pop the top range
+        
+        if low < high:
+            pivot_index = partition(arr, low, high)  # Partition the array
+            
+            # Push left and right subarrays onto the stack
+            stack.append((low, pivot_index - 1)) 
+            stack.append((pivot_index + 1, high)) 
+    
+    return arr  # Return the sorted array

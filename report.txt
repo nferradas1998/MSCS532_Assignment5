@@ -1,0 +1,59 @@
+Deterministic Quicksort Implementation:
+
+- For the implementation of the deterministic version of the quicksort, I decided to use the common practice
+    to use the last element of the array as the pivot. To make the implementation clean, I defined two functions:
+    1. partition
+        - This method takes 3 parameters (array, lower index, higher index)
+        - The purpose of this function is to call it to perform the sorting in each half of the array.
+
+    2. quicksort
+        - This function will be the main callable function that will only take the array as the parameter
+        - This method will be an iterative method, and the reason for that is that to test performance
+            we need to use big arrays that will actually show the difference between the different implementations.
+            If I were to use the recursive implementation, I will get an error because I exceeded the max recursive calls.
+            So, to avoid that I will be handling the recursive nature of the algorithm manually in a stack, as it mimics
+            recursive behavior
+
+
+Randomized Quicksort Implementation
+
+- This implementation will be very similar to the implementation for the deterministic quicsort. As a matter of fact,
+    There is no difference in the "quicksort" function that we are using. The only thing that changes is the "partition function
+    that is using a random index as the pivot. 
+
+- So, we are keeping the same idea and also using a stack to mimic the recursive behavior of the quicksort algorithm.
+
+
+Comparison results
+
+- This are the results after running both algorithms for the same arrays:
+
+Randomize Array performance: 
+ Deterministic Quicksort:  0.017506122589111328 
+ Randomized Quicksort:  0.022001266479492188
+Sorterd Array performance: 
+ Deterministic Quicksort:  6.399033069610596 
+ Randomized Quicksort:  0.023836374282836914
+Reverse-sorted Array performance: 
+ Deterministic Quicksort:  4.038973093032837 
+ Randomized Quicksort:  0.020520687103271484
+
+As we can see, Randomized quicksort performed incredibly better than deterministic quicksort for the sorted and Reverse-sorted use cases.
+This goes in hand with the theory, since Randomized quicksort will not be affected by the worst case scenario that deterministic
+quicksort is affected by.
+
+This is because the performance for each varies on the worst case scenario.
+
+Deterministic quicksort:
+
+Average time complexity: O(n log n)
+Worst-case time complexity: O(n^2)
+    - This will happen when arrays are sorted (either in ascending or descending order) because the partitions are unbalanced and we need to
+        do the most number of operations possible.
+
+Randomized Quiacksort:
+
+Average time complexity: O(n log n)
+Worst-case time complexity: O(n log n)
+    - We avoid the worst case scenario effect on the performance because our pivot selection is random, so the order of the input is less likely
+        to have a big impact in the performance
